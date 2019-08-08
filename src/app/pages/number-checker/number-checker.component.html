@@ -1,0 +1,26 @@
+<div class="d-flex flex-column align-items-center">
+  <h2>
+    Australian Company Number Checker
+  </h2>
+  <form
+    [formGroup]="numberForm"
+    (ngSubmit)="onSubmit(numberForm.value)"
+    class="d-flex flex-column align-items-center"
+  >
+    <label for="number">
+      Enter Australian Company Number (ACN)
+    </label>
+    <input id="number" type="text" formControlName="number" />
+
+    <button class="btn btn-primary m-2">
+      Check Number
+    </button>
+    <div
+      *ngIf="showMessage"
+      class="text-white p-2 rounded"
+      [ngClass]="{ 'bg-success': isValid, 'bg-danger': !isValid }"
+    >
+      {{ message }}
+    </div>
+  </form>
+</div>
