@@ -4,9 +4,11 @@
 
 .acn-page {
   .number-form {
+    color: $primary;
     border: none;
-    border-bottom: 1.5px solid;
+    border-bottom: 1.5px solid $secondary;
     font-size: 2rem;
+    background: transparent;
     &:focus {
       box-shadow: none;
       border: none;

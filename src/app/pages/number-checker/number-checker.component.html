@@ -1,37 +1,45 @@
-<div class="d-flex flex-column align-items-center acn-page animated fadeInUp">
-  <h2>
-    Australian Company Number Checker
-  </h2>
-  <form
-    [formGroup]="numberForm"
-    (ngSubmit)="onSubmit(numberForm.value)"
-    class="d-flex flex-column align-items-center"
-  >
-    <label for="number">
-      Enter Australian Company Number (ACN)
-    </label>
-    <input
-      class="number-form text-center"
-      id="number"
-      type="text"
-      formControlName="number"
-      placeholder="NNN NNN NNN"
-      required
-    />
+<div class="d-flex flex-column align-items-center">
+  <div class="card w-75 shadow animated fadeInUp">
+    <div class="card-body">
+      <div
+        class="d-flex flex-column align-items-center acn-page"
+      >
+        <h2>
+          Australian Company Number Checker
+        </h2>
+        <form
+          [formGroup]="numberForm"
+          (ngSubmit)="onSubmit(numberForm.value)"
+          class="d-flex flex-column align-items-center"
+        >
+          <label for="number">
+            Enter Australian Company Number (ACN)
+          </label>
+          <input
+            class="number-form text-center"
+            id="number"
+            type="text"
+            formControlName="number"
+            placeholder="NNN NNN NNN"
+            required
+          />
 
-    <button id="btn-check" class="btn btn-primary m-2">
-      Check Number
-    </button>
-    <div
-      class="text-white p-2 rounded notif-container animated fadeIn"
-      [ngClass]="{
-        'd-none': !showMessage,
-        'd-block': showMessage,
-        'bg-success': isValid,
-        'bg-danger': !isValid
-      }"
-    >
-      {{ message }}
+          <button id="btn-check" class="btn btn-primary m-2">
+            Check Number
+          </button>
+          <div
+            class="text-white p-2 rounded notif-container animated fadeIn"
+            [ngClass]="{
+              'd-none': !showMessage,
+              'd-block': showMessage,
+              'bg-success': isValid,
+              'bg-danger': !isValid
+            }"
+          >
+            {{ message }}
+          </div>
+        </form>
+      </div>
     </div>
-  </form>
+  </div>
 </div>
