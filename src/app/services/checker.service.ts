@@ -7,9 +7,10 @@ export class CheckerService {
   number;
   constructor() {}
 
-  isValidACN(acn) {
+  isValidACN(acn:String) {
+    const regex = /([0-9]{9})/;
     const regexASIC = /((([0-9]{3})\s){2}[0-9]{3})/;
-    if (acn.length !== 11 && regexASIC.test(acn))
+    if (!acn || acn.length !== 11 && !acn.match(regexASIC) && !acn.match(regex)) 
       return { valid: false, message: "Given ACN is not correct format!" };
 
     let inputNumber = acn.replace(/\s/g, '')
