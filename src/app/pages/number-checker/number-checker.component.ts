@@ -26,7 +26,7 @@ export class NumberCheckerComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    const result = this.checkerService.isValidACN(this.numberForm.value.number);
+    const result = this.checkerService.checkACN(this.numberForm.value.number);
     this.triggerMessage(result);
   }
 
