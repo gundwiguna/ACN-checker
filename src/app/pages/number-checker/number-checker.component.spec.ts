@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { NumberCheckerComponent } from "./number-checker.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
-import { NumberCheckerComponent } from './number-checker.component';
-
-describe('NumberCheckerComponent', () => {
+describe("NumberCheckerComponent", () => {
   let component: NumberCheckerComponent;
   let fixture: ComponentFixture<NumberCheckerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NumberCheckerComponent ]
-    })
-    .compileComponents();
+      declarations: [NumberCheckerComponent],
+      imports: [ReactiveFormsModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +19,16 @@ describe('NumberCheckerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
+
+  it("should run function on button clicked", async(() => {
+    spyOn(component, "onSubmit");
+    let button = fixture.debugElement.nativeElement.querySelector("button");
+    button.click();
+    fixture.whenStable().then(() => {
+      expect(component.onSubmit).toHaveBeenCalled();
+    });
+  }));
 });

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NumberCheckerComponent } from './pages/number-checker/number-checker.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,8 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     NumberCheckerComponent
   ],
   imports: [
+    BrowserModule,
     ReactiveFormsModule,
-    BrowserModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
