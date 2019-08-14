@@ -7,35 +7,26 @@ export class CheckerService {
   number;
   constructor() {}
 
-  checkACN(acn: String) {
-    const regex = new RegExp(/^([0-9]{9})$/g);
+  checkACN(givenACN: String) {
+    const regexNumber = new RegExp(/^([0-9]{9})$/g);
     const regexASIC = new RegExp(/^((([0-9]{3})\s){2}[0-9]{3})$/g);
-    
-    // if no data input or doesn't match any format
-    if (!acn || (!acn.match(regexASIC) && !acn.match(regex)))
+
+    if (!givenACN || (!givenACN.match(regexASIC) && !givenACN.match(regexNumber)))
       return { valid: false, message: "Given ACN is not correct format!" };
 
-    let inputNumber = acn.replace(/\s/g, "");
+    let inputNumber = givenACN.replace(/\s/g, "");
     let productSum = 0;
     for (let i = 0; i < inputNumber.length - 1; i++) {
       productSum += +inputNumber[i] * (inputNumber.length - i - 1);
-      console.log(
-        `${+inputNumber[i]} * ${inputNumber.length - i - 1} = ${+inputNumber[
-          i
-        ] *
-          (inputNumber.length - i - 1)}`
-      );
     }
     const checkDigit = (function() {
       const complement = 10 - (productSum % 10);
-      if (complement == 10) return 0;
-      else return complement;
+      return complement == 10 ? 0 : complement;
     })();
 
     if (checkDigit == +inputNumber.substring(inputNumber.length - 1)) {
       return { valid: true, message: "Given ACN is valid!" };
-    } else {
-      return { valid: false, message: "Given number is not a valid ACN!" };
     }
+    return { valid: false, message: "Given number is not a valid ACN!" };
   }
 }
