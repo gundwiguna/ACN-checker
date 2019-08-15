@@ -11,7 +11,10 @@ export class CheckerService {
     const regexNumber = new RegExp(/^([0-9]{9})$/g);
     const regexASIC = new RegExp(/^((([0-9]{3})\s){2}[0-9]{3})$/g);
 
-    if (!givenACN || (!givenACN.match(regexASIC) && !givenACN.match(regexNumber)))
+    if (
+      !givenACN ||
+      (!givenACN.match(regexASIC) && !givenACN.match(regexNumber))
+    )
       return { valid: false, message: "Given ACN is not correct format!" };
 
     let inputNumber = givenACN.replace(/\s/g, "");
@@ -21,10 +24,10 @@ export class CheckerService {
     }
     const checkDigit = (function() {
       const complement = 10 - (productSum % 10);
-      return complement == 10 ? 0 : complement;
+      return complement === 10 ? 0 : complement;
     })();
 
-    if (checkDigit == +inputNumber.substring(inputNumber.length - 1)) {
+    if (checkDigit === +inputNumber.substring(inputNumber.length - 1)) {
       return { valid: true, message: "Given ACN is valid!" };
     }
     return { valid: false, message: "Given number is not a valid ACN!" };
