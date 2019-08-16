@@ -7,17 +7,14 @@ export class CheckerService {
   number;
   constructor() {}
 
-  checkACN(givenACN: String) {
+  checkACN(acn: String) {
     const regexNumber = new RegExp(/^([0-9]{9})$/g);
     const regexASIC = new RegExp(/^((([0-9]{3})\s){2}[0-9]{3})$/g);
 
-    if (
-      !givenACN ||
-      (!givenACN.match(regexASIC) && !givenACN.match(regexNumber))
-    )
+    if (!acn || (!acn.match(regexASIC) && !acn.match(regexNumber)))
       return { valid: false, message: "Given ACN is not correct format!" };
 
-    let inputNumber = givenACN.replace(/\s/g, "");
+    let inputNumber = acn.replace(/\s/g, "");
     let productSum = 0;
     for (let i = 0; i < inputNumber.length - 1; i++) {
       productSum += +inputNumber[i] * (inputNumber.length - i - 1);
